@@ -10,7 +10,7 @@ export const PageLayout = ({ children }) => (
       <IndexLink to='/' className="Logo">My App</IndexLink>
       <div className="navContainer">
       <NavLink to="/counter">Counter</NavLink>
-      <NavLink to="/store">Store</NavLink>
+      <NavLink to="/info">Send To Server</NavLink>
       <NavLink to="/donate">Donate</NavLink>
       <NavLink to="/signIn">Sign In</NavLink>
       </div>

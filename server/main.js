@@ -5,7 +5,7 @@ const logger = require('../build/lib/logger')
 const webpackConfig = require('../build/webpack.config')
 const project = require('../project.config')
 const compress = require('compression')
-
+require('dotenv').config()
 const app = express()
 app.use(compress())
 
@@ -61,7 +61,29 @@ if (project.env === 'development') {
   // Serving ~/dist by default. Ideally these files should be served by
   // the web server and not the app server, but this helps to demo the
   // server in production.
+  app.set('port', process.env.PORT || 3000);
   app.use(express.static(path.resolve(project.basePath, project.outDir)))
+  var server = app.listen(app.get('port'), function() {  
+  var port = server.address().port;
+  console.log('Magic happens on port ' + port);
+  });
+
+
+//some fun with mongo DB
+var MongoClient = require('mongodb').MongoClient
+  , assert = require('assert');
+
+// Connection URL
+var url = 'mongodb://localhost:27017/myproject';
+
+// Use connect method to connect to the server
+MongoClient.connect(url, function(err, db) {
+  assert.equal(null, err);
+  console.log("Connected successfully to server");
+
+  db.close();
+});
+
 }
 
 module.exports = app
