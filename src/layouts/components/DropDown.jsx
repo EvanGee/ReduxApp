@@ -6,7 +6,7 @@ export const dropdown = function({items, title}) {
         <div className="dropdown">
         <span>{title}</span>
         <div className="dropdown-content">
-            {items.map(function(d, i) {return <p key={i}>{d}</p>})}
+            {items.map(function(d, i) {return <p key={i} className="dropdown-item">{d}</p>})}
         </div>
         </div>
     )

@@ -10,10 +10,11 @@ export const PageLayout = ({ children }) => (
       <IndexLink to='/' className="Logo">My App</IndexLink>
       <div className="navContainer">
         <NavLink to="/counter">Counter</NavLink>
-        <NavLink to="/info">Send To Server</NavLink>
-        <NavLink to="/donate">Donate</NavLink>
         <DropDown 
-          items= {["this", "that", "and the other thing"]}
+          items= {[
+            <Link to="/RegisterStore" activeClassName="active" className="navItem-dropdown">Open a store (free) </Link>,
+        
+            ]}
           title={<NavLink to="/MyStore">MyStore</NavLink>}>
         </DropDown>
 
