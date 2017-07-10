@@ -9,10 +9,11 @@ export const PageLayout = ({ children }) => (
     <div className="header">
       <IndexLink to='/' className="Logo">My App</IndexLink>
       <div className="navContainer">
+      
       <NavLink to="/counter">Counter</NavLink>
       <NavLink to="/info">Send To Server</NavLink>
       <NavLink to="/donate">Donate</NavLink>
-      <NavLink to="/signIn">Sign In</NavLink>
+      <NavLink to="/MyStore">MyStore</NavLink>>
       </div>
     </div>
     <div className='page-layout__viewport'>

@@ -67,23 +67,34 @@ if (project.env === 'development') {
   var port = server.address().port;
   console.log('Magic happens on port ' + port);
   });
+}
+
 
 
 //some fun with mongo DB
-var MongoClient = require('mongodb').MongoClient
-  , assert = require('assert');
-
+const MongoClient = require('mongodb').MongoClient
+const dbFormat = require('util').format
+const assert = require('assert')
+const user = encodeURIComponent('Evan')
+const password = encodeURIComponent('abc123')
+const authMechanism = "DEFAULT"
+const dbActions = require("../db/dbActions");
 // Connection URL
+//const url = dbFormat('mongodb://%s:%s@localhost:27017/myproject?authMechanism=%s', user, password, authMechanism);
 var url = 'mongodb://localhost:27017/myproject';
-
 // Use connect method to connect to the server
 MongoClient.connect(url, function(err, db) {
   assert.equal(null, err);
   console.log("Connected successfully to server");
-
-  db.close();
+  dbActions.insertDocuments(db, "document", [{a:1, b:2, c:3}])
+  .then(function(result){
+    console.log("success!!")
+    db.close()
+  })
+  .catch(function(err){
+    console.log("oops, Error: \n" + err)
+  })
 });
 
-}
 
 module.exports = app
