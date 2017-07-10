@@ -72,6 +72,7 @@ if (project.env === 'development') {
 
 
 //some fun with mongo DB
+/*
 const MongoClient = require('mongodb').MongoClient
 const dbFormat = require('util').format
 const assert = require('assert')
@@ -95,6 +96,6 @@ MongoClient.connect(url, function(err, db) {
     console.log("oops, Error: \n" + err)
   })
 });
-
+*/
 
 module.exports = app
