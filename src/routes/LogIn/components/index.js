@@ -1,16 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import SignUpForm from "./SignUpForm"
-export const Page = ({setInfo, info}) => (
+export const Page = ({logIn, loggedIn}) => (
   <div style={{ margin: '0 auto' }} >
-    <h2>Register your store now! </h2>
-    <SignUpForm/>
-    {info}
+    <h2>Log In Now!</h2>
+    <SignUpForm func={logIn}/>
   </div>
 )
 
 Page.propTypes = {
-  setInfo: PropTypes.func.isRequired,
+  logIn: PropTypes.func.isRequired,
 }
 
 export default Page

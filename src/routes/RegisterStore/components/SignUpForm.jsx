@@ -2,9 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 export const form = ({}) => (
-    <form action= "/fileInput" accept="image/gif, image/jpeg">
-        file name: <input type="text" name="fname"/><br/>
-        Your Image: <input type="file" name="pic"/>
+    <form>
+        Profile Name: <input type="text" name="fname"/><br/>
+        Email: <input type="text" name="fname"/><br/>
+        Password: <input type="text" name="fname"/><br/>
         <input type="submit" value="Submit"/>
     </form>
 )

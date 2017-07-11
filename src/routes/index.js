@@ -4,7 +4,7 @@ import Home from './Home'
 import CounterRoute from './Counter'
 import MyStore from './MyStore'
 import RegisterStore from './RegisterStore'
-
+import LogIn from './LogIn'
 /*  Note: Instead of using JSX, we recommend using react-router
     PlainRoute objects to build route definitions.   */
 
@@ -13,11 +13,19 @@ export const createRoutes = (store) => ({
   component   : CoreLayout,
   indexRoute  : Home,
   childRoutes : [
+    {
+      onEnter: requireAuth,
+      childRoutes: [
+        RegisterStore(store),
+      ]
+    },
+
     CounterRoute(store),
     MyStore(store),
-    RegisterStore(store)
+    LogIn(store)
   ]
 })
+
 
 /*  Note: childRoutes can be chunked or otherwise loaded programmatically
     using getChildRoutes with the following signature:
@@ -36,5 +44,18 @@ export const createRoutes = (store) => ({
     inside the route `getComponent` function, since it is only invoked
     when the route exists and matches.
 */
+
+
+function loggedIn() {
+  return false
+}
+
+function requireAuth(nextState, replace) {
+  if (!loggedIn()) {
+    replace({
+      pathname: '/LogIn'
+    })
+  }
+}
 
 export default createRoutes

@@ -5,9 +5,11 @@ const logger = require('../build/lib/logger')
 const webpackConfig = require('../build/webpack.config')
 const project = require('../project.config')
 const compress = require('compression')
+
 require('dotenv').config()
 const app = express()
 app.use(compress())
+
 
 // ------------------------------------
 // Apply Webpack HMR Middleware
@@ -58,9 +60,6 @@ if (project.env === 'development') {
     'section in the README for more information on deployment strategies.'
   )
 
-  // Serving ~/dist by default. Ideally these files should be served by
-  // the web server and not the app server, but this helps to demo the
-  // server in production.
   app.set('port', process.env.PORT || 3000);
   app.use(express.static(path.resolve(project.basePath, project.outDir)))
   var server = app.listen(app.get('port'), function() {  
@@ -76,8 +75,9 @@ if (project.env === 'development') {
 const MongoClient = require('mongodb').MongoClient
 const dbFormat = require('util').format
 const assert = require('assert')
-const user = encodeURIComponent('Evan')
-const password = encodeURIComponent('abc123')
+
+const user = encodeURIComponent('myTester')
+const password = encodeURIComponent('xyz123')
 const authMechanism = "DEFAULT"
 const dbActions = require("../db/dbActions");
 // Connection URL
@@ -95,6 +95,7 @@ MongoClient.connect(url, function(err, db) {
   .catch(function(err){
     console.log("oops, Error: \n" + err)
   })
+  
 });
 */
 
