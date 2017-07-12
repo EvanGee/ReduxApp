@@ -11,10 +11,8 @@ export default (store) => ({
           dependencies for bundling   */
       const container = require('./containers/container').default
       const reducer = require('./modules/reducers').default
-
       /*  Add the reducer to the store on key 'counter'  */
-      injectReducer(store, { key: 'LoggedIn', reducer })
-
+      injectReducer(store, { key: 'LogInPage', reducer })
       /*  Return getComponent   */
       cb(null, container)
 

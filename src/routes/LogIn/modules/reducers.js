@@ -1,9 +1,10 @@
 import axios from 'axios'
-import dispatch from 'redux'
 // ------------------------------------
 // Constants
 // ------------------------------------
 export const LOGGED_IN = "LOGGED_IN"
+export const PASSWORD  = "PASSWORD"
+export const EMAIL     = "EMAIL"
 
 // ------------------------------------
 // Actions
@@ -16,19 +17,36 @@ export function loggedIn() {
   }
 }
 
+export function changePassword(newPassword) {
+  return {
+    type: PASSWORD,
+    payload: newPassword
+  }
+}
+
+
+export function changeEmail(newEmail) {
+  return {
+    type: EMAIL,
+    payload: newEmail
+  }
+}
+
+
 // ------------------------------------
 // Server Requests
 // ------------------------------------
 
 export function logIn(email, password) {
-  axios.post('/LogIn', {
-    firstName: 'Fred',
-    password: 'abc123'
+  console.log(email, password)
+  axios.post('/LogIn_this_is_not_a _route', {
+    email,
+    password
   })
   .then(function (response) {
     console.log(response);
     console.log("SUCCESS")
-    dispatch(loggedIn())
+    return loggedIn()
   })
   .catch(function (error) {
     console.log(error);
@@ -40,7 +58,9 @@ export function logIn(email, password) {
 // Action Handlers
 // ------------------------------------
 const ACTION_HANDLERS = {
-  [LOGGED_IN]   : (state, action) => action.payload
+  [LOGGED_IN]   : (state, action) => ({"LoggedIn" : action.payload}),
+  [PASSWORD]    : (state, action) => ({ ...state, "password" : action.payload}),
+  [EMAIL]         : (state, action) => ({ ...state, "email" : action.payload})
 }
 
 // ------------------------------------
@@ -49,7 +69,6 @@ const ACTION_HANDLERS = {
 const initialState = 0
 export default function LogInReducer (state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type]
-
   return handler ? handler(state, action) : state
 }
 
