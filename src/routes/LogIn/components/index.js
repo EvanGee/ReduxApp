@@ -10,7 +10,7 @@ export const Page = ({logIn, changePassword, changeEmail, emailVal, passwordVal,
     <form>
         Email: <input type="email" name="email" id="Email" onChange={changeEmail}/><br/>
         Password: <input type="password" name="password" id="Password" onChange={changePassword}/><br/>
-        <button onClick={()=> logIn(emailVal, passwordVal)}>SUBMIT</button>
+        <button type="button" onClick={()=> logIn(emailVal, passwordVal)}>SUBMIT</button>
         <button type="button" onClick={loggedIn}>LOGGEDIN</button>
     </form>
 

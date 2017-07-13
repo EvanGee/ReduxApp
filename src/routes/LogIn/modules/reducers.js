@@ -38,13 +38,12 @@ export function changeEmail(newEmail) {
 // ------------------------------------
 
 export function logIn(email, password) {
-  console.log(email, password)
-  axios.post('/LogIn_this_is_not_a _route', {
+  axios.get('/birds', {
     email,
     password
   })
   .then(function (response) {
-    console.log(response);
+    console.log(response.data);
     console.log("SUCCESS")
     return loggedIn()
   })

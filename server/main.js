@@ -5,11 +5,12 @@ const logger = require('../build/lib/logger')
 const webpackConfig = require('../build/webpack.config')
 const project = require('../project.config')
 const compress = require('compression')
+const apiRoutes = require('./apiRoutes')
 
 require('dotenv').config()
 const app = express()
 app.use(compress())
-
+app.use("/api", apiRoutes)
 
 // ------------------------------------
 // Apply Webpack HMR Middleware
@@ -71,11 +72,9 @@ if (project.env === 'development') {
 
 
 //some fun with mongo DB
-
 const MongoClient = require('mongodb').MongoClient
 const dbFormat = require('util').format
 const assert = require('assert')
-
 const user = encodeURIComponent('myTester')
 const password = encodeURIComponent('xyz123')
 const authMechanism = "DEFAULT"
@@ -99,6 +98,5 @@ MongoClient.connect(url, function(err, db) {
   
   */
 });
-
 
 module.exports = app
