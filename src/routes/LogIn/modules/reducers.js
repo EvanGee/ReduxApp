@@ -38,18 +38,16 @@ export function changeEmail(newEmail) {
 // ------------------------------------
 
 export function logIn(email, password) {
-  axios.get('/birds', {
-    email,
-    password
-  })
-  .then(function (response) {
-    console.log(response.data);
-    console.log("SUCCESS")
-    return loggedIn()
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
+  return (dispatch, getstate) => {
+    axios.get('/api/birds')
+    .then(function (response) {
+      console.log(response.data);
+      dispatch(loggedIn())
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
 }
 
 

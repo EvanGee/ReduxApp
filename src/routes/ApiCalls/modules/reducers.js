@@ -3,7 +3,7 @@
 // ------------------------------------
 export const SET_INFO = "SET_INFO"
 import fetch from "isomorphic-fetch"
-require('es6-promise').polyfill();
+//require('es6-promise').polyfill();
 //import 'babel-polyphill'
 
 
@@ -25,6 +25,7 @@ export function fetchPosts(subreddit) {
       .then(json => {
         dispatch(receivePosts(subreddit, json))
         console.log(subreddit)}
+
       )
   }
 }
