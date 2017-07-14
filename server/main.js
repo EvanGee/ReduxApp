@@ -6,27 +6,35 @@ const webpackConfig = require('../build/webpack.config')
 const project = require('../project.config')
 const compress = require('compression')
 const apiRoutes = require('./apiRoutes')
+const bodyParser = require('body-parser')
+const passport = require('passport');
+const mongoUtil = require("../db/connection")
 
 require('dotenv').config()
 const app = express()
 app.use(compress())
+
+
+app.use(bodyParser.urlencoded({ extended: false}))
+app.use(passport.initialize())
+
+
+//const localSignupStrategy = require('./passport/local-signup');
+//const localLoginStrategy = require('./passport/local-login');
+//passport.use('local-signup', localSignupStrategy);
+//passport.use('local-login', localLoginStrategy);
+
+//const authCheckMiddleware = require('./middleware/auth-check');
+//app.use('/api', authCheckMiddleware);
+
+
 app.use("/api", apiRoutes)
-
-
-
-
-
-
-
-
-
-
-
 
 
 // ------------------------------------
 // Apply Webpack HMR Middleware
 // ------------------------------------
+
 if (project.env === 'development') {
   const compiler = webpack(webpackConfig)
 
@@ -82,33 +90,5 @@ if (project.env === 'development') {
 }
 
 
-/*
-//some fun with mongo DB
-const MongoClient = require('mongodb').MongoClient
-const dbFormat = require('util').format
-const assert = require('assert')
-const user = encodeURIComponent('myTester')
-const password = encodeURIComponent('xyz123')
-const authMechanism = "DEFAULT"
-const dbActions = require("../db/dbActions");
-// Connection URL
-//const url = dbFormat('mongodb://%s:%s@localhost:27017/myproject?authMechanism=%s', user, password, authMechanism);
-var url = 'mongodb://localhost:27017/myproject';
-// Use connect method to connect to the server
-MongoClient.connect(url, function(err, db) {
-  assert.equal(null, err);
-  console.log("Connected successfully to server");
-  
-  dbActions.insertDocuments(db, "document", [{a:1, b:2, c:3}])
-  .then(function(result){
-    console.log("success!!")
-    db.close()
-  })
-  .catch(function(err){
-    console.log("oops, Error: \n" + err)
-  })
-  
-  
-});
-*/
+
 module.exports = app
