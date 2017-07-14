@@ -39,9 +39,10 @@ export function changeEmail(newEmail) {
 
 export function logIn(email, password) {
   return (dispatch, getstate) => {
-    axios.get('/api/birds')
-    .then(function (response) {
-      console.log(response.data);
+    axios.post('/api/LogIn')
+    .then(function (res) {
+      console.log(res.data);
+      updateServerState("evan", getstate())
       dispatch(loggedIn())
     })
     .catch(function (error) {
@@ -49,6 +50,19 @@ export function logIn(email, password) {
     });
   }
 }
+
+//update state
+export function updateServerState(user, state) {
+    axios.post('/api/updateState', state)
+    .then(function (res) {
+      console.log(res.data);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
+
+
 
 
 // ------------------------------------

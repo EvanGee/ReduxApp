@@ -1,17 +1,12 @@
 
 const assert = require('assert')
 
-module.exports.insertDocuments = function(db, collectionName, data){
-    return new Promise (function(fulfill, reject) {
+exports.insertDocuments = function(db, collectionName, model){
+    return new Promise (function(resolve, reject) {
         var collection = db.collection(collectionName)
-        collection.insertMany(data, function(err, result){
+        collection.insertMany(model, function(err, result){
             if (err) reject(err)
-            else fulfill(result)
-            //var len = length(data)
-            //assert.equal(len, result.result.n)
-            //assert.equal(len, result.ops.length)
-            //console.log("inserted " + len + " documents")
-
+            else resolve(result)
         })
     })
 }
@@ -32,9 +27,10 @@ var insertDocuments = function(db, callback) {
     callback(result);
   });
 }
-
-
+*/
+/*
 var findDocuments = function(db, callback) {
+
   // Get the documents collection
   var collection = db.collection('documents');
   // Find some documents
@@ -45,7 +41,19 @@ var findDocuments = function(db, callback) {
     callback(docs);
   });
 }
+*/
+exports.findDocuments = function(db, collectionName, model){
+    return new Promise(function(resolve, reject){
+      var collection = db.collection(collectionName);
+      // Find some documents
+      collection.find(model).toArray(function(err, docs) {
+        if (err) reject(err)
+        else resolve(docs)
+      });
+    }) 
+}
 
+/*
 var updateDocument = function(db, callback) {
   // Get the documents collection
   var collection = db.collection('documents');

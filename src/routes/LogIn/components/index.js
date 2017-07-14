@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import SignUpForm from "./SignUpForm"
 //<SignUpForm logIn={logIn} chPass={changePassword} chEmail={changeEmail}/>
 
 export const Page = ({logIn, changePassword, changeEmail, emailVal, passwordVal, loggedIn}) => (

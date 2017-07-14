@@ -7,7 +7,7 @@ const mapDispatchToProps = (dispatch) => ({
   logIn : (emailVal, passwordVal) => dispatch(logIn(emailVal, passwordVal)),
   changePassword : (e) => dispatch(changePassword(e.target.value)),
   changeEmail    : (e) => dispatch(changeEmail(e.target.value)),
-  loggedIn       : (e) => dispatch(loggedIn())
+  loggedIn       : (e) => dispatch(loggedIn()),
 })
 
 const mapStateToProps = (state) => ({
