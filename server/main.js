@@ -9,13 +9,15 @@ const apiRoutes = require('./apiRoutes')
 const bodyParser = require('body-parser')
 const passport = require('passport');
 const mongoUtil = require("../db/connection")
-
 require('dotenv').config()
-const app = express()
-app.use(compress())
 
+const app = express()
+
+app.use(compress())
 app.use(bodyParser.json())
 app.use(passport.initialize())
+
+require('./middleware/local-login')
 
 
 //const localSignupStrategy = require('./passport/local-signup');

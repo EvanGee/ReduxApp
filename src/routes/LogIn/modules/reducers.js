@@ -37,13 +37,14 @@ export function changeEmail(newEmail) {
 // Server Requests
 // ------------------------------------
 
-export function logIn(email, password) {
+export function login(email, password) {
   return (dispatch, getstate) => {
-    axios.post('/api/LogIn')
+    axios.post('/api/login', {"username" : email, password})
     .then(function (res) {
       console.log(res.data);
-      updateServerState("evan", getstate())
+      //updateServerState("evan", getstate())
       dispatch(loggedIn())
+      
     })
     .catch(function (error) {
       console.log(error);

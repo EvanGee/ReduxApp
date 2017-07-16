@@ -4,7 +4,7 @@ const mongoUtil = require("../../db/connection")
 const dbActions = require ("../../db/dbActions")
 const models = require("../../db/models")
 const db = mongoUtil.getDb()
-console.log("hello")
+const passport = require("passport")
 
 // middleware that is specific to this router
 router.use(function(req, res, next){
@@ -14,7 +14,7 @@ router.use(function(req, res, next){
 router.post('/updateState', function (req, res) {
   console.log(req.body)
   console.log(req.body.LogInPage)
-  /*
+
   dbActions.insertDocuments(db, "data", [models.user("evan", {"state": req.body})])
   .then(function(){
     console.log("updated state")
@@ -22,14 +22,15 @@ router.post('/updateState', function (req, res) {
   .catch(function(err){
     console.log("oh shit\n" + err)
   })
-  */
+
   res.send('updated State')
   
 })
 
 
-router.post('/LogIn', function (req, res) {
-
+router.post('/login', 
+  passport.authenticate('local', {session: false }), 
+  function (req, res) {                            
   /*
   dbActions.insertDocuments(db, "data", [models.user("evan", {"state": req.body})])
   .then(function(){
@@ -39,7 +40,8 @@ router.post('/LogIn', function (req, res) {
     console.log("oh shit\n" + err)
   })
   */
-  res.send('Logged In')
+  res.send(req.body)
+  console.log(req.body)
   
 })
 

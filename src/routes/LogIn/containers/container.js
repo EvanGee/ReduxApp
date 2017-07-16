@@ -1,18 +1,18 @@
 import { connect } from 'react-redux'
 import Info from '../components/index'
-import {logIn, changePassword, changeEmail, loggedIn} from '../modules/reducers'
+import {login, changePassword, changeEmail, loggedIn} from '../modules/reducers'
 
 
 const mapDispatchToProps = (dispatch) => ({
-  logIn : (emailVal, passwordVal) => dispatch(logIn(emailVal, passwordVal)),
+  login : (emailVal, passwordVal) => dispatch(login(emailVal, passwordVal)),
   changePassword : (e) => dispatch(changePassword(e.target.value)),
   changeEmail    : (e) => dispatch(changeEmail(e.target.value)),
   loggedIn       : (e) => dispatch(loggedIn()),
 })
 
 const mapStateToProps = (state) => ({
-  emailVal : state.LogInPage.email,
-  passwordVal : state.LogInPage.password
+  emailVal : state.LoginPage.email,
+  passwordVal : state.LoginPage.password
 })
 
 

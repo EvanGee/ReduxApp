@@ -4,7 +4,7 @@ import Home from './Home'
 import CounterRoute from './Counter'
 import MyStore from './MyStore'
 import RegisterStore from './RegisterStore'
-import LogIn from './LogIn'
+import Login from './Login'
 import ApiCalls from './ApiCalls'
 /*  Note: Instead of using JSX, we recommend using react-router
     PlainRoute objects to build route definitions.   */
@@ -25,7 +25,7 @@ export const createRoutes = (store) => (
 
     CounterRoute(store),
     MyStore(store),
-    LogIn(store),
+    Login(store),
     ApiCalls(store),
   ]
 })
