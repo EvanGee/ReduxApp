@@ -1,10 +1,10 @@
 var express = require('express')
 var router = express.Router()
-const mongoUtil = require("../../db/connection")
-const dbActions = require ("../../db/dbActions")
+const db = require("../../db/connection")
 const models = require("../../db/models")
-const db = mongoUtil.getDb()
 const passport = require("passport")
+const collections = require("../../db/collections")
+
 
 // middleware that is specific to this router
 router.use(function(req, res, next){
@@ -15,7 +15,7 @@ router.post('/updateState', function (req, res) {
   console.log(req.body)
   console.log(req.body.LogInPage)
 
-  dbActions.insertDocuments(db, "data", [models.user("evan", {"state": req.body})])
+  db.insertDocuments("data", [models.user("evan", {"state": req.body})])
   .then(function(){
     console.log("updated state")
   })
@@ -30,31 +30,19 @@ router.post('/updateState', function (req, res) {
 
 router.post('/login', 
   passport.authenticate('local', {session: false }), 
-  function (req, res) {                            
-  /*
-  dbActions.insertDocuments(db, "data", [models.user("evan", {"state": req.body})])
-  .then(function(){
-    console.log("updated state")
-  })
-  .catch(function(err){
-    console.log("oh shit\n" + err)
-  })
-  */
+  (req, res) => {                            
+
   res.send(req.body)
-  console.log(req.body)
   
 })
 
+router.post('./asdf', (req, res) => {
+  db.findDocuments("username")
+})
 
-router.get('/getState', function (req, res) {
-  dbActions.findDocuments(db, "data", models.user("evan", {"data": "stuff"}))
-  .then(function(data){
-    console.log(data)
-    res.send(data)
-  })
-  .catch(function(err){
-    console.log("err\n" + err)
-  })
+
+router.post('/register', (req, res) => {
+
 })
 
 module.exports = router

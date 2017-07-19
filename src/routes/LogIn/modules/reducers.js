@@ -43,7 +43,7 @@ export function login(email, password) {
     .then(function (res) {
       console.log(res.data);
       //updateServerState("evan", getstate())
-      dispatch(loggedIn())
+      //dispatch(loggedIn())
       
     })
     .catch(function (error) {
