@@ -1,20 +1,35 @@
-import axios from 'axios'
+import Axios from 'axios'
 // ------------------------------------
 // Constants
 // ------------------------------------
 export const LOGGED_IN = "LOGGED_IN"
 export const PASSWORD  = "PASSWORD"
 export const EMAIL     = "EMAIL"
-
+axios = Axios.create({withCredentials:true})
 // ------------------------------------
 // Actions
 // ------------------------------------
 
 export function loggedIn() {
+
+  return (dispatch, getstate) => {
+    axios.get('/api/register')
+    .then(function (res) {
+      console.log(res.data);
+      //updateServerState("evan", getstate())
+      //dispatch(loggedIn())
+      
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
+  /*
   return {
     type: LOGGED_IN,
     payload: true
   }
+  */
 }
 
 export function changePassword(newPassword) {
@@ -54,7 +69,7 @@ export function login(email, password) {
 
 //update state
 export function updateServerState(user, state) {
-    axios.post('/api/updateState', state)
+    axios.post('/api/updateState', {withCredentials:true}, state)
     .then(function (res) {
       console.log(res.data);
     })
@@ -62,7 +77,6 @@ export function updateServerState(user, state) {
       console.log(error);
     });
   }
-
 
 
 
