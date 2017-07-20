@@ -16,20 +16,12 @@ const app = express()
 app.use(compress())
 app.use(bodyParser.json())
 app.use(passport.initialize())
+require('./middleware/local-login');
 
-require('./middleware/local-login')
-
-
-//const localSignupStrategy = require('./passport/local-signup');
-//const localLoginStrategy = require('./passport/local-login');
-//passport.use('local-signup', localSignupStrategy);
-//passport.use('local-login', localLoginStrategy);
-
-//const authCheckMiddleware = require('./middleware/auth-check');
-//app.use('/api', authCheckMiddleware);
 
 
 app.use("/api", apiRoutes)
+
 
 
 // ------------------------------------

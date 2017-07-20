@@ -1,11 +1,12 @@
-import Axios from 'axios'
+import axios from 'axios'
+
 // ------------------------------------
 // Constants
 // ------------------------------------
 export const LOGGED_IN = "LOGGED_IN"
 export const PASSWORD  = "PASSWORD"
 export const EMAIL     = "EMAIL"
-axios = Axios.create({withCredentials:true})
+
 // ------------------------------------
 // Actions
 // ------------------------------------
@@ -16,6 +17,7 @@ export function loggedIn() {
     axios.get('/api/register')
     .then(function (res) {
       console.log(res.data);
+
       //updateServerState("evan", getstate())
       //dispatch(loggedIn())
       
@@ -56,10 +58,10 @@ export function login(email, password) {
   return (dispatch, getstate) => {
     axios.post('/api/login', {"username" : email, password})
     .then(function (res) {
+
       console.log(res.data);
       //updateServerState("evan", getstate())
       //dispatch(loggedIn())
-      
     })
     .catch(function (error) {
       console.log(error);

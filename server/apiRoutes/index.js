@@ -5,10 +5,32 @@ const models = require("../../db/models")
 const passport = require("passport")
 const collections = require("../../db/collections")
 
+const expressJwt = require('express-jwt')
+const jwt = require('jsonwebtoken')
+
+function generateToken(req, res, next) {
+  req.token = jwt.sign({
+    id: req.user
+  }, 'server secret', {
+    expiresIn: 120
+  })
+  next()
+}
+
+const authenticate = expressJwt({
+  secret: 'server secret',
+  credentialsRequired: false,
+  getToken: function fromHeaderOrQuerystring (req) {
+    let tokenInd = req.rawHeaders.indexOf("Cookie") + 1
+    let token = req.rawHeaders[tokenInd]
+    token = token.split("=")
+    token = token[1]
+  }
+  })
+
 
 // middleware that is specific to this router
 router.use(function (req, res, next) {
-  console.log(req.user)
   next()
 })
 
@@ -27,18 +49,18 @@ router.post('/updateState', function (req, res) {
   res.send('updated State')
 
 })
-
+//not setting client side cookies
 router.post('/login',
-  passport.authenticate('local', { session: true }),
+  passport.authenticate('local', { session: false }),
+  generateToken,
   (req, res) => {
-    res.send(req.body)
-    console.log("my user: " + req.user)
+    res.cookie('access_token', req.token)
   })
 
 router.get('/register',
+  authenticate,
   (req, res) => {
-    console.log(req.user)
-    res.send(req.user)
+
   })
 
 module.exports = router

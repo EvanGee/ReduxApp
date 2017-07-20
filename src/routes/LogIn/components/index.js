@@ -9,8 +9,8 @@ export const Page = ({login, changePassword, changeEmail, emailVal, passwordVal,
     <form>
         Email: <input type="email" name="email" id="Email" onChange={changeEmail}/><br/>
         Password: <input type="password" name="password" id="Password" onChange={changePassword}/><br/>
-        <button type="button" onClick={()=> login(emailVal, passwordVal)}>SUBMIT</button>
-        <button type="button" onClick={loggedIn}>LOGGEDIN</button>
+        <button type="button" onClick={()=> login(emailVal, passwordVal)}>/api/login</button>
+        <button type="button" onClick={loggedIn}>/api/register</button>
     </form>
 
   {emailVal} 
