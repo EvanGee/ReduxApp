@@ -9,16 +9,25 @@ const apiRoutes = require('./apiRoutes')
 const bodyParser = require('body-parser')
 const passport = require('passport');
 const mongoUtil = require("../db/connection")
-require('dotenv').config()
-
+const flash = require('connect-flash')
+const cookieParser = require('cookie-parser');
+const session      = require('express-session');
 const app = express()
 
+
 app.use(compress())
+app.use(cookieParser())
 app.use(bodyParser.json())
+
+app.use(session({secret : "helloworld"}))
 app.use(passport.initialize())
-require('./middleware/local-login');
+app.use(passport.session());
 
+require('./middleware/local-login')(passport);
 
+app.use(flash())
+
+require('dotenv').config()
 
 app.use("/api", apiRoutes)
 
