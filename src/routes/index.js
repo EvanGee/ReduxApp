@@ -6,6 +6,7 @@ import MyStore from './MyStore'
 import RegisterStore from './RegisterStore'
 import Login from './Login'
 import ApiCalls from './ApiCalls'
+import Register from './Register'
 /*  Note: Instead of using JSX, we recommend using react-router
     PlainRoute objects to build route definitions.   */
 
@@ -27,6 +28,7 @@ export const createRoutes = (store) => (
     MyStore(store),
     Login(store),
     ApiCalls(store),
+    Register(store),
   ]
 })
 

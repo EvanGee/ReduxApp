@@ -5,7 +5,6 @@ const logger = require('../build/lib/logger')
 const webpackConfig = require('../build/webpack.config')
 const project = require('../project.config')
 const compress = require('compression')
-const apiRoutes = require('./apiRoutes')
 const bodyParser = require('body-parser')
 const passport = require('passport');
 const mongoUtil = require("../db/connection")
@@ -14,22 +13,17 @@ const cookieParser = require('cookie-parser');
 const session      = require('express-session');
 const app = express()
 
-
 app.use(compress())
 app.use(cookieParser())
 app.use(bodyParser.json())
-
 app.use(session({secret : "helloworld"}))
 app.use(passport.initialize())
 app.use(passport.session());
-
 require('./middleware/local-login')(passport);
-
 app.use(flash())
-
 require('dotenv').config()
+require('./apiRoutes')(app)
 
-app.use("/api", apiRoutes)
 
 
 

@@ -11,28 +11,8 @@ export const EMAIL     = "EMAIL"
 // Actions
 // ------------------------------------
 
-export function loggedIn() {
 
-  return (dispatch, getstate) => {
-    axios.get('/api/register')
-    .then(function (res) {
-      console.log(res.data);
 
-      //updateServerState("evan", getstate())
-      //dispatch(loggedIn())
-      
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-  }
-  /*
-  return {
-    type: LOGGED_IN,
-    payload: true
-  }
-  */
-}
 
 export function changePassword(newPassword) {
   return {
@@ -59,9 +39,6 @@ export function login(email, password) {
     axios.post('/api/login', {"username" : email, password})
     .then(function (res) {
 
-      console.log(res.data);
-      //updateServerState("evan", getstate())
-      //dispatch(loggedIn())
     })
     .catch(function (error) {
       console.log(error);
@@ -71,7 +48,7 @@ export function login(email, password) {
 
 //update state
 export function updateServerState(user, state) {
-    axios.post('/api/updateState', {withCredentials:true}, state)
+    axios.post('/api/updateState', state)
     .then(function (res) {
       console.log(res.data);
     })
