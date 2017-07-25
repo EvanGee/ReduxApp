@@ -12,8 +12,8 @@ export const PageLayout = ({ children }) => (
         <NavLink to="/counter">Counter</NavLink>
         <DropDown 
           items= {[
-            <Link to="/RegisterStore" activeClassName="active" className="navItem-dropdown">Open a store (free) </Link>,
-        
+            <Link to="/Login" activeClassName="active" className="navItem-dropdown">Login Now </Link>,
+            <Link to="/Register" activeClassName="active" className="navItem-dropdown">Open a store (free) </Link>,
             ]}
           title={<NavLink to="/MyStore">MyStore</NavLink>}>
         </DropDown>
