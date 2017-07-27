@@ -1,14 +1,14 @@
 import { connect } from 'react-redux'
 import Page from '../components/index'
-import {register, setPass, setValidatePass, setEmail, setUserName} from '../modules/reducers'
+import {register, valPass, valValidatePass, valEmail, valUserName} from '../modules/reducers'
 
 
 const mapDispatchToProps = (dispatch) => ({
   registerUser    : (formData) => dispatch(register(formData)),
-  setPass         : (value) => dispatch(setPass(value)),
-  setValidatePass : (value) => dispatch(setValidatePass(value)),
-  setEmail        : (value) => dispatch(setEmail(value)),
-  setUserName     : (value) => dispatch(setUserName(value))
+  setPass         : (value)    => dispatch(valPass(value)),
+  setValidatePass : (value)    => dispatch(valValidatePass(value)),
+  setEmail        : (value)    => dispatch(valEmail(value)),
+  setUserName     : (value)    => dispatch(valUserName(value))
 })
 
 const mapStateToProps = (state) => ({

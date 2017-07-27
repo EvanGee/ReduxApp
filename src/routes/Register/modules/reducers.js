@@ -3,14 +3,14 @@ import axios from "axios"
 // Constants
 // ------------------------------------
 export const REGISTERED = "REGISTERED"
-export const PASS = "R_PASSWORD"
+export const PASSWORD = "R_PASSWORD"
 export const VAL_PASS = "R_VAL_PASS"
 export const EMAIL = "R_EMAIL"
 export const USERNAME = "R_USERNAME"
 
 export const actions = {
   REGISTERED,
-  PASS,
+  PASSWORD,
   VAL_PASS,
   EMAIL,
   USERNAME
@@ -27,34 +27,62 @@ export const registered = () => {
   }
 }
 
-export const setPass = (newPass) => {
-  console.log(newPass)
+
+const setPass = (newPass) => {
   return {
-    type: PASS,
+    type: PASSWORD,
     payload: newPass
   }
 }
+export const valPass = (newPass) => {
+  return (dispatch, getstate) => {
+    dispatch(setPass(newPass))
+  }
+}
 
-export const setValidatePass = (newPass) => {
+
+
+const setValPass = (newPass) => {
   return {
     type: VAL_PASS,
     payload: newPass
   }
 }
+export const valValidatePass = (newPass) => {
+  return (dispatch, getstate) => {
+    dispatch(setValPass(newPass))
+  }
+}
 
-export const setEmail = (newEmail) => {
+
+
+const setEmail = (newEmail) => {
   return {
     type: EMAIL,
     payload: newEmail
   }
 }
+export const valEmail = (newEmail) => {
+  return (dispatch, getstate) => {
+    dispatch(setEmail(newEmail))
+  }
+}
 
-export const setUserName = (newUserName) => {
+
+
+const setUser = (newUserName) => {
   return {
     type: USERNAME,
     payload: newUserName
   }
 }
+
+export const valUserName = (newUserName) => {
+  return (dispatch, getstate) => {
+    dispatch(setUser(newUserName))
+  }
+}
+
 
 
 // ------------------------------------
@@ -81,11 +109,11 @@ export const register = () => {
 // Action Handlers
 // ------------------------------------
 const ACTION_HANDLERS = {
-  [REGISTERED]: (state, action) => ( {...state, REGISTERED: action.payload }),
-  [USERNAME]: (state, action) => ({...state, USERNAME : action.payload}),
-  [PASS]: (state, action) => ({...state, PASS: action.payload}),
-  [VAL_PASS]: (state, action) => ({...state, VAL_PASS: action.payload}),
-  [EMAIL]: (state, action) => ({...state, EMAIL: action.payload}),
+  [REGISTERED]: (state, action) => ({ ...state, REGISTERED: action.payload }),
+  [USERNAME]: (state, action) => ({ ...state, USERNAME: action.payload }),
+  [PASSWORD]: (state, action) => ({ ...state, PASSWORD: action.payload }),
+  [VAL_PASS]: (state, action) => ({ ...state, VAL_PASS: action.payload }),
+  [EMAIL]: (state, action) => ({ ...state, EMAIL: action.payload }),
 }
 
 // ------------------------------------

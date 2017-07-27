@@ -64,8 +64,8 @@ export function updateServerState(user, state) {
 // ------------------------------------
 const ACTION_HANDLERS = {
   [LOGGED_IN]   : (state, action) => ({"LoggedIn" : action.payload}),
-  [PASSWORD]    : (state, action) => ({ ...state, "password" : action.payload}),
-  [EMAIL]         : (state, action) => ({ ...state, "email" : action.payload})
+  [PASSWORD]    : (state, action) => ({ ...state, PASSWORD: action.payload}),
+  [EMAIL]         : (state, action) => ({ ...state, EMAIL : action.payload})
 }
 
 // ------------------------------------
