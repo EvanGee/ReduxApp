@@ -22,45 +22,52 @@ const onChangePasswordVerify = event => {
 export const Page = ({ registerUser }) => (
   <div>
 
-    <Form formObjArray={[
+    <Form formObjs={[
       {
         Lable: "User Name",
         HelpText: "This is the name other people will recognize you as",
         Placeholder: "User Name",
         onChangeFunc: (e) => {
           console.log(e.target.value)
-        }
+        },
       },
       {
-        Lable: "User Name",
-        HelpText: "This is the name other people will recognize you as",
-        Placeholder: "User Name",
+        Lable: "Email",
+        Placeholder: "Email",
         onChangeFunc: (e) => {
           console.log(e.target.value)
         }
       },
       {
-        Lable: "User Name",
-        HelpText: "This is the name other people will recognize you as",
-        Placeholder: "User Name",
+        Lable: "Password",
+        Placeholder: "Password",
         onChangeFunc: (e) => {
           console.log(e.target.value)
         }
       },
       {
-        Lable: "User Name",
-        HelpText: "This is the name other people will recognize you as",
-        Placeholder: "User Name",
+        Lable: "Verify Password",
+        Placeholder: "Please type password again",
         onChangeFunc: (e) => {
           console.log(e.target.value)
         }
       },
+
     ]} />
-    <button className='btn btn-primary' onClick={registerUser}>
-      Register Now!
+    <div className="form-group row">
+      <label className="col-sm-5 control-label"></label>
+      <div className="col-sm-2">
+        <input onChange={()=>{console.log("wassip")}} type="checkbox"  className="form-control" autoFocus />
+        <span className="help-block">Are you over 18</span>
+      </div>
+      <div className="col-sm-5"></div>
+    </div>
+
+  <button className='btn btn-primary' onClick={registerUser}>
+    Register Now!
     </button>
 
-  </div>
+  </div >
 )
 
 Page.propTypes = {

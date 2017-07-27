@@ -19,7 +19,6 @@ const generateForm = ({ Type = "text", Lable, HelpText, Placeholder, onChangeFun
 export const form = ({formObjs}) => {
     return (
         <div className="container">
-            <h2 className="">Registration Form</h2>
             <form className="form-horizontal" role="form">
                 {
                     formObjs.map((d, i ) => generateForm(d, i))

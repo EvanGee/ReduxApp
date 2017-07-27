@@ -7,11 +7,13 @@ const collections = require("../../db/collections")
 const auth = require("../middleware/auth-util")
 
 
+
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated())
     return next();
   else res.send("not logged in")
 }
+
 
 router.post('/login',
   passport.authenticate('local-login', { session: true }),
@@ -22,25 +24,22 @@ router.post('/login',
     });
   })
 
-
-router.use((req, res, next) => {
-  isLoggedIn(req, res, next)
-})
-
 router.get('/register',
   (req, res) => {
     console.log(req.user)
   })
 
+
 router.get("/logout",
   (req, res, next) => {
     if (isLoggedIn()) {
+      
 req.logout()
     res.send("loggout")
     } else {
       console.log("not logged in")
     }
-    })
+})
 
 
 
