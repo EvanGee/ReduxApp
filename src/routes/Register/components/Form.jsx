@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 
+
 const generateForm = ({ Type = "text", Lable, HelpText, Placeholder, onChangeFunc}, i) =>
     (
         <div key={i}>

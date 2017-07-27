@@ -14,7 +14,7 @@ export const Page = ({
       <Form formObjs={[
       {
         Lable: "Email",
-        Placeholder: "User Name",
+        Placeholder: "Email",
         onChangeFunc: changeEmail,
         Type: "email"
         
@@ -28,7 +28,7 @@ export const Page = ({
       },
     ]} />
 
-<button type="button" className="btn btn-primary" onClick={() => login(emailVal, passwordVal)}>/api/login</button>
+<button type="button" className="btn btn-primary" onClick={() => login(emailVal, passwordVal)}>Login</button>
     </div>
 
   )

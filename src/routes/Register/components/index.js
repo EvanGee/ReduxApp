@@ -3,54 +3,32 @@ import PropTypes from 'prop-types'
 import Form from "./Form"
 import "./style.scss"
 
-const onChangeUserName = event => {
-  console.log(event.target.value)
-}
-
-const onChangeEmail = event => {
-  console.log(event.target.value)
-}
-
-const onChangePassword = event => {
-  console.log(event.target.value)
-}
-
-const onChangePasswordVerify = event => {
-  console.log(event.target.value)
-}
-
-export const Page = ({ registerUser }) => (
+export const Page = ({ registerUser, setPass, setValidatePass, setEmail, setUserName }) => (
   <div>
 
     <Form formObjs={[
       {
         Lable: "User Name",
-        HelpText: "This is the name other people will recognize you as",
         Placeholder: "User Name",
-        onChangeFunc: (e) => {
-          console.log(e.target.value)
-        },
+        onChangeFunc: (e) => setUserName(e.target.value),
       },
       {
         Lable: "Email",
         Placeholder: "Email",
-        onChangeFunc: (e) => {
-          console.log(e.target.value)
-        }
+        onChangeFunc: (e) => setEmail(e.target.value),
+        Type: "email"
       },
       {
         Lable: "Password",
         Placeholder: "Password",
-        onChangeFunc: (e) => {
-          console.log(e.target.value)
-        }
+        onChangeFunc: (e) => setPass(e.target.value),
+        Type: "password"
       },
       {
         Lable: "Verify Password",
         Placeholder: "Please type password again",
-        onChangeFunc: (e) => {
-          console.log(e.target.value)
-        }
+        onChangeFunc: (e) => setValidatePass(e.target.value),
+        Type: "password"
       },
 
     ]} />
@@ -58,12 +36,12 @@ export const Page = ({ registerUser }) => (
       <label className="col-sm-5 control-label"></label>
       <div className="col-sm-2">
         <input onChange={()=>{console.log("wassip")}} type="checkbox"  className="form-control" autoFocus />
-        <span className="help-block">Are you over 18</span>
+        <span className="help-block">Are you over 18 and agree to our terms and service</span>
       </div>
       <div className="col-sm-5"></div>
     </div>
 
-  <button className='btn btn-primary' onClick={registerUser}>
+  <button className='btn btn-primary' onClick={()=>registerUser("formData")}>
     Register Now!
     </button>
 
